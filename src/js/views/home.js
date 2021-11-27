@@ -16,6 +16,14 @@ export const Home = () => {
 					  })
 					: ""}
 			</div>
+			<div className="row">
+				<h1>Planets</h1>
+				{store.planets
+					? store.planets.map((value, index) => {
+							return <Card key={index} value={value} index={index} />;
+					  })
+					: ""}
+			</div>
 		</div>
 	);
 };
