@@ -1,0 +1,13 @@
+/* The heart of the matter */
+.testimonial-group > .row {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .testimonial-group > .row > .card {
+    display: inline-block;
+  }
+
+  .card{
+      margin: 10px;
+  }
