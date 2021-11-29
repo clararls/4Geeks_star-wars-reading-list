@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = props => {
-	//no se como hacer que salgan o el genero o la population
+	//no se como hacer que salgan o el genero o la población
 	if (props.value.gender !== "undefined" && props.value.terrain == "undefined") {
 		return (
 			<div key={props.index} className="card" style={{ width: "18rem" }}>
