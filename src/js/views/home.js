@@ -12,7 +12,7 @@ export const Home = () => {
 				<h1>Characters</h1>
 				{store.characters
 					? store.characters.map((value, index) => {
-							return <Card key={index} value={value} index={index} />;
+							return <Card key={index} value={value} index={index} category={"people"} />;
 					  })
 					: ""}
 			</div>
@@ -20,7 +20,7 @@ export const Home = () => {
 				<h1>Planets</h1>
 				{store.planets
 					? store.planets.map((value, index) => {
-							return <Card key={index} value={value} index={index} />;
+							return <Card key={index} value={value} index={index} category={"planets"} />;
 					  })
 					: ""}
 			</div>

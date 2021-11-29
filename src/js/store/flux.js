@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//creo arrays vacios
 			characters: [],
 			planets: [],
+			result: {},
 			demo: [
 				{
 					title: "FIRST",
@@ -24,15 +25,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// Creo la función que va a traer de la API los datos de people
 			loadCharactersData: () => {
-				fetch("https://swapi.dev/api/people/")
+				fetch("https://www.swapi.tech/api/people")
 					.then(response => response.json())
 					//almacenará los data.results que son los datos de los personajes en store.characters
 					.then(data => setStore({ characters: data.results }));
 			},
 			loadPlanetsData: () => {
-				fetch("https://swapi.dev/api/planets/")
+				fetch("https://www.swapi.tech/api/planets")
 					.then(response => response.json())
 					.then(data => setStore({ planets: data.results }));
+			},
+			loadInfoData: (category, id) => {
+				fetch("https://www.swapi.tech/api/" + category + "/" + id)
+					.then(response => response.json())
+					.then(data => setStore({ result: data.result }));
 			},
 			changeColor: (index, color) => {
 				//get the store
