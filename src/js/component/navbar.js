@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+<Link to="/demo">
+	<button className="btn btn-primary ml-3">Favorites</button>
+</Link>;
 export const Navbar = () => {
-	// ver como poner el logo de star wars y intentar hacer un dropdown con un solo elemento
+	const [dropdown, setDropdown] = useState(false);
+	const toggleOpen = () => setDropdown(!dropdown);
+	// intentar hacer un dropdown con un solo elemento
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<Link to="/">
-				<span
-					src="https://logos-marcas.com/wp-content/uploads/2020/11/Star-Wars-Logo.png"
-					className="navbar-brand mb-0 h1">
-					React Boilerplate
+				<span className="navbar-brand mb-0 h1">
+					<img
+						src="https://logos-marcas.com/wp-content/uploads/2020/11/Star-Wars-Logo.png"
+						alt="logo"
+						id="logo"
+					/>
 				</span>
 			</Link>
 			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
+				<div className="dropdown">
+					<button onClick={toggleOpen}>Favorites</button>
+					<div className={`dropdown-menu ${dropdown ? "show" : ""} `} aria-labelledby="dropdownMenuButton">
+						<a className="dropdown-item" href="#">
+							Delete
+						</a>
+					</div>
+				</div>
 			</div>
 		</nav>
 	);
