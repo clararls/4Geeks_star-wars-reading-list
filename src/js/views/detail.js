@@ -6,11 +6,11 @@ export const Detail = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 	useEffect(() => {
-		console.log(params);
 		actions.loadInfoData(params.category, params.theid);
 	}, []);
 	return (
 		<div className="container">
+			<h1>{store.result.properties ? store.result.properties.name : ""}</h1>
 			<img src="https://c.tenor.com/ldtrtxE3DTgAAAAC/star-wars-r2d2.gif" />
 			<br />
 			<p>

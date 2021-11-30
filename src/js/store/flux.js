@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			result: {},
+			vehicles: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -34,6 +35,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://www.swapi.tech/api/planets")
 					.then(response => response.json())
 					.then(data => setStore({ planets: data.results }));
+			},
+			loadVehiclesData: () => {
+				fetch("https://www.swapi.tech/api/vehicles")
+					.then(response => response.json())
+					.then(data => setStore({ vehicles: data.results }));
 			},
 			loadInfoData: (category, id) => {
 				fetch("https://www.swapi.tech/api/" + category + "/" + id)

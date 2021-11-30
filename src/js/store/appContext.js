@@ -24,6 +24,7 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
 			state.actions.loadCharactersData();
 			state.actions.loadPlanetsData();
+			state.actions.loadVehiclesData();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,
