@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: [],
 			result: {},
 			vehicles: [],
+			favorites: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -23,6 +24,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			favorites: (category, element) => {
+				const store = getStore();
+				setStore({ favorites: [...store.favorites, { category: category, element: element }] });
+			},
+			deleteFavorites: (category, element) => {
+				const store = getStore();
+				let position;
+				store.favorites.forEach((value, index) => {
+					if (value.category == category && value.element.id == element.id) {
+						position = index;
+					}
+				});
+				store.favorites.splice(position, 1);
+				setStore({ favorites: [...store.favorites] });
 			},
 			// Creo la función que va a traer de la API los datos de people
 			loadCharactersData: () => {

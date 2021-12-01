@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-<Link to="/demo">
-	<button className="btn btn-primary ml-3">Favorites</button>
-</Link>;
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	const [dropdown, setDropdown] = useState(false);
 	const toggleOpen = () => setDropdown(!dropdown);
 	// intentar hacer un dropdown con un solo elemento
@@ -21,11 +20,24 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<div className="dropdown">
-					<button onClick={toggleOpen}>Favorites</button>
-					<div className={`dropdown-menu ${dropdown ? "show" : ""} `} aria-labelledby="dropdownMenuButton">
-						<a className="dropdown-item" href="#">
-							Delete
-						</a>
+					<button className="btn btn-secondary dropdown-toggle" onClick={toggleOpen}>
+						Favorites
+					</button>
+					<div
+						className={`dropdown-menu dropdown-menu-right ${dropdown ? "show" : ""} `}
+						aria-labelledby="dropdownMenuButton">
+						<ul>
+							{store.favorites.map((value, index) => {
+								return (
+									<li key={index}>
+										{value.element.name}{" "}
+										<button onClick={() => actions.deleteFavorites(value.category, value.element)}>
+											Delete
+										</button>
+									</li>
+								);
+							})}
+						</ul>
 					</div>
 				</div>
 			</div>
