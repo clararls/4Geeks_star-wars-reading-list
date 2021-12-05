@@ -8,6 +8,7 @@ export const Detail = () => {
 	useEffect(() => {
 		actions.loadInfoData(params.category, params.theid);
 	}, []);
+
 	return (
 		<div className="container">
 			<h1>{store.result.properties ? store.result.properties.name : ""}</h1>
@@ -20,7 +21,32 @@ export const Detail = () => {
 				ante.
 			</p>
 			<br />
-			{store.result.properties ? store.result.properties.birth_year : ""}
+			<div className="row">
+				<div className="col-auto">
+					<h5>Name</h5>
+					{store.result.properties ? store.result.properties.name : ""}
+				</div>
+				<div className="col-auto">
+					<h5>Birth Year</h5>
+					{store.result.properties ? store.result.properties.birth_year : ""}
+				</div>
+				<div className="col-auto">
+					<h5>Gender</h5>
+					{store.result.properties ? store.result.properties.gender : ""}
+				</div>
+				<div className="col-auto">
+					<h5>Height</h5>
+					{store.result.properties ? store.result.properties.height : ""}
+				</div>
+				<div className="col-auto">
+					<h5>Skin Color</h5>
+					{store.result.properties ? store.result.properties.skin_color : ""}
+				</div>
+				<div className="col-auto">
+					<h5>Eye Color </h5>
+					{store.result.properties ? store.result.properties.eye_color : ""}
+				</div>
+			</div>
 			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>

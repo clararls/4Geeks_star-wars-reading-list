@@ -4,9 +4,9 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+	//con esto consigo que funcione el dropdown sin instalar nada más
 	const [dropdown, setDropdown] = useState(false);
 	const toggleOpen = () => setDropdown(!dropdown);
-	// intentar hacer un dropdown con un solo elemento
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<Link to="/">
