@@ -1,6 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { CharactersDetail } from "../component/details/characters";
+import { PlanetsDetail } from "../component/details/planets";
+import { VehiclesDetail } from "../component/details/vehicles";
 
 export const Detail = () => {
 	const { store, actions } = useContext(Context);
@@ -8,11 +11,19 @@ export const Detail = () => {
 	useEffect(() => {
 		actions.loadInfoData(params.category, params.theid);
 	}, []);
-
+	const getcomponentByCategory = category => {
+		if (category == "people") {
+			return <CharactersDetail value={store.result.properties} />;
+		} else if (category == "planets") {
+			return <PlanetsDetail value={store.result.properties} />;
+		} else if (category == "vehicles") {
+			return <VehiclesDetail value={store.result.properties} />;
+		}
+	};
 	return (
 		<div className="container">
 			<h1>{store.result.properties ? store.result.properties.name : ""}</h1>
-			<img src="https://c.tenor.com/ldtrtxE3DTgAAAAC/star-wars-r2d2.gif" />
+			<img className="rounded mx-auto d-block" src="https://c.tenor.com/ldtrtxE3DTgAAAAC/star-wars-r2d2.gif" />
 			<br />
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat sodales leo, id feugiat metus
@@ -21,32 +32,7 @@ export const Detail = () => {
 				ante.
 			</p>
 			<br />
-			<div className="row">
-				<div className="col-auto">
-					<h5>Name</h5>
-					{store.result.properties ? store.result.properties.name : ""}
-				</div>
-				<div className="col-auto">
-					<h5>Birth Year</h5>
-					{store.result.properties ? store.result.properties.birth_year : ""}
-				</div>
-				<div className="col-auto">
-					<h5>Gender</h5>
-					{store.result.properties ? store.result.properties.gender : ""}
-				</div>
-				<div className="col-auto">
-					<h5>Height</h5>
-					{store.result.properties ? store.result.properties.height : ""}
-				</div>
-				<div className="col-auto">
-					<h5>Skin Color</h5>
-					{store.result.properties ? store.result.properties.skin_color : ""}
-				</div>
-				<div className="col-auto">
-					<h5>Eye Color </h5>
-					{store.result.properties ? store.result.properties.eye_color : ""}
-				</div>
-			</div>
+			{getcomponentByCategory(params.category)}
 			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>

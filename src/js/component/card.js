@@ -5,14 +5,12 @@ import { Context } from "../store/appContext";
 
 const Card = props => {
 	const { store, actions } = useContext(Context);
-	const [Favorites, setFavorites] = useState(0);
 	const AddFavorites = event => {
-		if (Favorites == 1) {
+		if (props.value.isFavorite) {
 			actions.deleteFavorites(props.category, props.value);
 		} else {
 			actions.favorites(props.category, props.value);
 		}
-		setFavorites(Favorites == 0 ? 1 : 0);
 	};
 
 	return (
@@ -30,7 +28,7 @@ const Card = props => {
 				</Link>
 				<button
 					href="#"
-					className={`btn far fa-heart ${Favorites == 1 ? "favorites" : ""}`}
+					className={`btn far fa-heart ${props.value.isFavorite ? "favorites" : ""}`}
 					onClick={AddFavorites}
 				/>
 			</div>

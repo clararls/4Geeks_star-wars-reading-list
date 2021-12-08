@@ -1,3 +1,5 @@
+import { StrictMode } from "react";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -25,9 +27,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+			liked: (category, element, status) => {
+				const store = getStore();
+				let categoryStore = category == "people" ? "characters" : category;
+				let categoryValues = store[categoryStore];
+				categoryValues.forEach((value, index) => {
+					if (value.uid == element.uid) {
+						value.isFavorite = status;
+					}
+				});
+				setStore({ categoryStore: categoryValues });
+			},
 			favorites: (category, element) => {
 				const store = getStore();
 				setStore({ favorites: [...store.favorites, { category: category, element: element }] });
+				getActions().liked(category, element, true);
 			},
 			deleteFavorites: (category, element) => {
 				const store = getStore();
@@ -39,6 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				store.favorites.splice(position, 1);
 				setStore({ favorites: [...store.favorites] });
+				getActions().liked(category, element, false);
 			},
 			// Creo la función que va a traer de la API los datos de people
 			loadCharactersData: () => {
