@@ -34,9 +34,11 @@ export const Detail = () => {
 			<br />
 			{getcomponentByCategory(params.category)}
 			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
+			<div className="text-center">
+				<Link to="/">
+					<button className="btn btn-primary btn-lg">Back home</button>
+				</Link>
+			</div>
 		</div>
 	);
 };
